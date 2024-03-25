@@ -1,0 +1,49 @@
+* {
+  font-family: "Roboto";
+}
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(7, 137, 147, 1) 46%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.flash-message {
+  position: absolute;
+  width: 30%;
+  margin-right: 5px;
+  right: 0;
+  margin-top: 10px;
+  animation: launchAndReturn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes launchAndReturn {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.navbar-links {
+  text-decoration: none;
+  color: black;
+}
+
+.form-link {
+  color: #144C77;
+  padding-bottom: 0.5px;
+  text-decoration: none;
+  border-bottom: 1px solid #144C77;
+  transition: 0.1s;
+}
+
+.form-link:hover {
+  color: #2B6A9A;
+  border-bottom: 1px solid #2B6A9A;
+}

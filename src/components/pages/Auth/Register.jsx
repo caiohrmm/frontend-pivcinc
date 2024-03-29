@@ -68,7 +68,6 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
     register(user);
   };
 

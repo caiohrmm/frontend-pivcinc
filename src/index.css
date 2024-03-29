@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   font-family: "Roboto";
 }
@@ -46,4 +50,13 @@ body {
 .form-link:hover {
   color: #2B6A9A;
   border-bottom: 1px solid #2B6A9A;
+}
+
+.modal-style {
+  position: absolute;
+}
+
+.form-grid {
+  text-align: center;
+  width: 100%;
 }

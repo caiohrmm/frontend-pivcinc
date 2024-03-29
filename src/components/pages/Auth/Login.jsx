@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -19,6 +19,8 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+
+import { Context } from "../../../context/UserContext";
 
 function Copyright(props) {
   return (
@@ -57,10 +59,8 @@ const defaultTheme = createTheme({
   },
 });
 
-export default function Register() {
-  const [value, setValue] = React.useState("");
-
-  const [showPassword, setShowPassword] = React.useState(false);
+export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -68,16 +68,16 @@ export default function Register() {
     event.preventDefault();
   };
 
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const [user, setUser] = useState({});
+  const { login } = useContext(Context);
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(user);
   };
 
   return (
@@ -117,7 +117,6 @@ export default function Register() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              
               <Grid item xs={12}>
                 <TextField
                   required
@@ -126,6 +125,7 @@ export default function Register() {
                   label="Endereço de E-mail"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
                 />
               </Grid>
 
@@ -137,7 +137,9 @@ export default function Register() {
                   <OutlinedInput
                     id="outlined-adornment-password"
                     required
+                    name="password"
                     fullWidth
+                    onChange={handleChange}
                     label="Senha *"
                     type={showPassword ? "text" : "password"}
                     endAdornment={
@@ -155,7 +157,6 @@ export default function Register() {
                   />
                 </FormControl>
               </Grid>
-              
             </Grid>
             <Button
               type="submit"
@@ -171,8 +172,9 @@ export default function Register() {
               justifyContent="center"
               alignItems="center"
             >
-              <Link to={"/register"} className="form-link">Ainda não tem um cadastro? Clique aqui!</Link>
-             
+              <Link to={"/register"} className="form-link">
+                Ainda não tem um cadastro? Clique aqui!
+              </Link>
             </Grid>
           </Box>
         </Box>

@@ -16,22 +16,24 @@ import LogoImage from "../../../../public/logo.png";
 
 import { Context } from "../../../context/UserContext";
 import { Link } from "react-router-dom";
-import Modal from "./modal/Modal";
-import PositionDemo from "./modal/Modal";
-import { SelectButton } from "primereact/selectbutton";
 
+import ModalComponent from "./modal/ModalComponent";
 
 function Navbar() {
   const { authenticated } = useContext(Context);
+
+  const { logout } = useContext(Context);
 
   const pagesAuth = ["Seguindo", "Postagens", "Meu Perfil"];
 
   const pagesWithoutAuth = ["Fazer Login", "Registrar"];
 
+  const [open, setOpen] = useState(false);
+
   const pageLinks = {
     Seguindo: "/following",
     Postagens: "/posts",
-    "Meu Perfil": "/my-profile",
+    "Meu Perfil": "/user/profile",
     "Fazer Login": "/login",
     Registrar: "/register",
   };
@@ -54,16 +56,7 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
-
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <AppBar
@@ -143,7 +136,7 @@ function Navbar() {
                   </MenuItem>
 
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Link to={"/dashboard"} className="navbar-links">
+                    <Link to={"/user/profile"} className="navbar-links">
                       <Typography textAlign="center">Meu Perfil</Typography>
                     </Link>
                   </MenuItem>
@@ -245,14 +238,23 @@ function Navbar() {
                   onClose={handleCloseUserMenu}
                 >
                   <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">Meu Perfil</Typography>
+                    <Link to={"/user/profile"} className="navbar-links">
+                      <Typography textAlign="center">Meu Perfil</Typography>
+                    </Link>
                   </MenuItem>
                   <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">Dashboard</Typography>
                   </MenuItem>
-                  <MenuItem onClick={handleOpenModal}>
+                  <MenuItem onClick={() => setIsOpen(true)}>
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>
+                  <ModalComponent
+                    isOpen={isOpen}
+                    handleModal={setIsOpen}
+                    title={"Você está a um passo de sair do sistema!"}
+                    buttonConfirm={"Sair"}
+                    action={logout}
+                  />
                 </Menu>
               </Box>
             </>

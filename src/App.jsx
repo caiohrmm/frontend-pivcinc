@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/pages/Auth/Login";
 import Register from "./components/pages/Auth/Register";
-import Home from "./components/pages/Home";
+import Home from "./components/pages/Home/Home";
 import Profile from "./components/pages/User/Profile";
 
 // Componentes de layout

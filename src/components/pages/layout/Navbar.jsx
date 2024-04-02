@@ -10,7 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import LogoImage from "../../../../public/logo.png";
 
@@ -18,6 +18,7 @@ import { Context } from "../../../context/UserContext";
 import { Link } from "react-router-dom";
 
 import ModalComponent from "./modal/ModalComponent";
+import api from "../../../utils/api";
 
 function Navbar() {
   const { authenticated } = useContext(Context);
@@ -27,6 +28,21 @@ function Navbar() {
   const pagesAuth = ["Seguindo", "Postagens", "Meu Perfil"];
 
   const pagesWithoutAuth = ["Fazer Login", "Registrar"];
+
+  // Pego o token do meu localStorage
+  const [token] = useState(localStorage.getItem("token" || ""));
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    api
+      .get("/users/checkuser", {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      .then((response) => setUser(response.data));
+  }, [token]);
 
   const [open, setOpen] = useState(false);
 
@@ -213,11 +229,12 @@ function Navbar() {
           {authenticated && (
             <>
               <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
+                <Tooltip title="Acessar Informações">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
+                      alt="Imagem de Perfil"
+                      src={`http://localhost:4000/images/user/${user.image}`}
+                      sx={{backgroundColor: "darkblue", height: "50px", width: "50px", padding: "2px"}}
                     />
                   </IconButton>
                 </Tooltip>

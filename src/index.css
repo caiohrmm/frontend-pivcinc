@@ -72,3 +72,15 @@ body {
   border-bottom: 1px solid #2B6A9A;
 }
 
+.home {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(7, 137, 147, 1) 46%,
+    rgb(1, 14, 17) 100%
+  );
+  margin-top: 2%;
+  padding: 1em;
+
+}

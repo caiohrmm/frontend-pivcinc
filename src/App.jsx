@@ -12,7 +12,8 @@ import ContainerContext from "./components/pages/layout/ContainerContext";
 
 import { UserProvider } from "./context/UserContext";
 import FlashMessage from "./components/pages/layout/FlashMessage";
-
+import MyPosts from "./components/pages/Posts/MyPosts";
+import CreatePost from "./components/pages/Posts/CreatePost";
 
 const App = () => {
   return (
@@ -32,6 +33,13 @@ const App = () => {
           </Routes>
           <Routes>
             <Route path="/user/profile" element={<Profile />} />
+          </Routes>
+          <Routes>
+            <Route path="/posts/myposts" element={<MyPosts />} />
+          </Routes>
+
+          <Routes>
+            <Route path="/posts/create" element={<CreatePost />} />
           </Routes>
         </ContainerContext>
         <Footer />

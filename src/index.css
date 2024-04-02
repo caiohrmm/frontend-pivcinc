@@ -60,3 +60,15 @@ body {
   text-align: center;
   width: 100%;
 }
+
+.description-posts a {
+  color: #144C77;
+  border-bottom: 1px solid #144C77;
+  transition: 0.5s;
+}
+
+.description-posts a:hover {
+  color: #2B6A9A;
+  border-bottom: 1px solid #2B6A9A;
+}
+

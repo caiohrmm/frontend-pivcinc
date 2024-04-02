@@ -32,7 +32,7 @@ function Navbar() {
 
   const pageLinks = {
     Seguindo: "/following",
-    Postagens: "/posts",
+    Postagens: "/posts/myposts",
     "Meu Perfil": "/user/profile",
     "Fazer Login": "/login",
     Registrar: "/register",
@@ -124,7 +124,7 @@ function Navbar() {
               {authenticated ? (
                 <>
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Link to={"/dashboard"} className="navbar-links">
+                    <Link to={"/posts/myposts"} className="navbar-links">
                       <Typography textAlign="center">Postagens</Typography>
                     </Link>
                   </MenuItem>

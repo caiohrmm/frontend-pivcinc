@@ -20,25 +20,25 @@ const GetInTouch = () => {
             mx: 6,
         }}
         >
-            <Title 
+            <Title
             text={
-                'Contact us to buy property'
+                'Seja Pivcinc agora mesmo!  '
                 } 
             textAlign={'center'}
+            
             />
             <Paragraph 
             text={
-                'It is our commitment to ensure a professional and enjoyable \
-                new home buying experience for you. \
-                If you want to get a home to start living as a family in an \
-                area that you love click the button below.'
+                'Se livre agora mesmo do vício entrando em nosso sistema e conhecendo pessoas que passam pela mesma dificuldade que você!'
             }
             maxWidth = {'sm'}
             mx={0}
             textAlign={'center'}
+            color={"#fff"}
+
             />
             <Button component={Link} 
-            to={'/contact'}
+            to={'/register'}
             variant="contained" 
             type="submit"
             size="medium"
@@ -56,7 +56,7 @@ const GetInTouch = () => {
                 }
             }}
             >
-                get in touch
+                Registrar
             </Button>
  
         </Stack>

@@ -15,7 +15,7 @@ const GetStarted = () => {
     fontSize: "1.1rem",
     textAlign: "start",
     lineHeight: "1.5",
-    color: "#515151",
+    color: "#fff",
     marginTop: "1.5rem",
   });
 
@@ -92,7 +92,7 @@ const GetStarted = () => {
             px: 4,
           }}
         >
-          <Title text={"Match with the best agent"} textAlign={"start"} />
+          <Title text={"Match with the best agent"} textAlign={"start"}  />
           <CustomTypography>
             Our verified partner Agents are local experts who
             <br />

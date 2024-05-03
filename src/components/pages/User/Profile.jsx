@@ -81,7 +81,7 @@ const Profile = () => {
       >
         Editar Perfil
       </Typography>
-      <Grid container spacing={2} p={2} mt={3}>
+      <Grid container spacing={2} p={2}>
         <form className="flex flex-col gap-4 form-grid" onSubmit={handleSubmit}>
           <div>
             <div className="mb-2 block p-4">
@@ -107,7 +107,7 @@ const Profile = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="email1" value="E-mail:" />
+              <Label htmlFor="email" value="E-mail:" />
             </div>
             <TextInput
               id="email1"
@@ -120,7 +120,7 @@ const Profile = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="name1" value="Nome:" />
+              <Label htmlFor="name" value="Nome:" />
             </div>
             <TextInput
               id="name1"
@@ -133,7 +133,7 @@ const Profile = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="phone1" value="Telefone:" />
+              <Label htmlFor="phone" value="Telefone:" />
             </div>
             <TextInput
               id="phone1"
@@ -146,7 +146,7 @@ const Profile = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="password1" value="Senha:" />
+              <Label htmlFor="password" value="Senha:" />
             </div>
             <TextInput
               id="password1"

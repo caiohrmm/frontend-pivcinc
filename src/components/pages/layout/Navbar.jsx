@@ -44,14 +44,15 @@ function Navbar() {
       .then((response) => setUser(response.data));
   }, [token]);
 
-  const [open, setOpen] = useState(false);
 
   const pageLinks = {
-    Seguindo: "/following",
+    Seguindo: "/posts/following",
     Postagens: "/posts/myposts",
     "Meu Perfil": "/user/profile",
     "Fazer Login": "/login",
     Registrar: "/register",
+    "Criar Post": "/posts/create",
+    Dashboard: "/posts/dashboard"
   };
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -140,20 +141,30 @@ function Navbar() {
               {authenticated ? (
                 <>
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Link to={"/posts/myposts"} className="navbar-links">
-                      <Typography textAlign="center">Postagens</Typography>
+                    <Link to={"/posts/following"} className="navbar-links">
+                      <Typography textAlign="center">Seguindo</Typography>
                     </Link>
                   </MenuItem>
 
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Link to={"/dashboard"} className="navbar-links">
-                      <Typography textAlign="center">Seguindo</Typography>
+                    <Link to={"/posts/myposts"} className="navbar-links">
+                      <Typography textAlign="center">Meus posts</Typography>
                     </Link>
                   </MenuItem>
 
                   <MenuItem onClick={handleCloseNavMenu}>
                     <Link to={"/user/profile"} className="navbar-links">
                       <Typography textAlign="center">Meu Perfil</Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Link to={"/posts/create"} className="navbar-links">
+                      <Typography textAlign="center">Criar Post</Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Link to={"/posts/dashboard"} className="navbar-links">
+                      <Typography textAlign="center">Dashboard</Typography>
                     </Link>
                   </MenuItem>
                 </>

@@ -11,7 +11,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Caio Henrique
+        Caio Henrique, Luis Felipe, Luiz Vinicius, Thiago Bravin, Tiago Almeida
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

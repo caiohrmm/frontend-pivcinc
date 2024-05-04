@@ -84,3 +84,13 @@ body {
   padding: 1em;
 
 }
+
+.textarea {
+  background-color: white;
+  margin-bottom: 0.5em;
+}
+
+.drag-drop {
+  background-color: white;
+  padding: 1em;
+}

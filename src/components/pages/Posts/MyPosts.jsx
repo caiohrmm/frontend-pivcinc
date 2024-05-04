@@ -1,9 +1,53 @@
 import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import api from "../../../utils/api";
 
 const MyPosts = () => {
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState({});
+  const [token] = useState(localStorage.getItem("token") || "");
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await api.get("/users/checkuser", {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        });
+        setUser(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    if (token) {
+      fetchData();
+    }
+  }, [token]);
+
+  {
+    useEffect(() => {
+      async function getAllPostsByUser() {
+        try {
+          const response = await api.get(`/posts/myposts/${user._id}`, {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+          });
+          setPosts(response.data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      if (user) {
+        getAllPostsByUser();
+      }
+    }, [user]);
+  }
+
   return (
     <section>
       <Typography
@@ -30,15 +74,18 @@ const MyPosts = () => {
                 sx={{
                   marginTop: "1%",
                   padding: "4px",
-                  textAlign: "center"
+                  textAlign: "center",
                 }}
               >
-                Você ainda não publicou nada. Faça sua postagem clickando <Link to={"/posts/create"}>aqui</Link>!
+                Você ainda não publicou nada. Faça sua postagem clickando{" "}
+                <Link to={"/posts/create"}>aqui</Link>!
               </Typography>
             </div>
           </>
         )}
       </div>
+      
+      
     </section>
   );
 };

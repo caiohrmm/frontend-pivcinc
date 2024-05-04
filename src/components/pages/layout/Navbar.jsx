@@ -6,26 +6,26 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useState, useContext, useEffect } from "react";
 
-import LogoImage from "../../../../public/logo.png";
+import LogoImage from "/logo.png";
 
 import { Context } from "../../../context/UserContext";
 import { Link } from "react-router-dom";
 
 import ModalComponent from "./modal/ModalComponent";
 import api from "../../../utils/api";
+import AvatarComponent from "./AvatarComponent";
 
 function Navbar() {
   const { authenticated } = useContext(Context);
 
   const { logout } = useContext(Context);
 
-  const pagesAuth = ["Seguindo", "Postagens", "Meu Perfil"];
+  const pagesAuth = ["Seguindo", "Meus Posts", "Editar Perfil", "Criar Post", "Dashboard"];
 
   const pagesWithoutAuth = ["Fazer Login", "Registrar"];
 
@@ -41,18 +41,20 @@ function Navbar() {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
       })
-      .then((response) => setUser(response.data));
+      .then((response) => {
+        setUser(response.data);
+        setPathImage(response.data.image);
+      });
   }, [token]);
-
 
   const pageLinks = {
     Seguindo: "/posts/following",
-    Postagens: "/posts/myposts",
-    "Meu Perfil": "/user/profile",
+    "Meus Posts": "/posts/myposts",
+    "Editar Perfil": "/user/edit",
     "Fazer Login": "/login",
     Registrar: "/register",
     "Criar Post": "/posts/create",
-    Dashboard: "/posts/dashboard"
+    Dashboard: "/posts/dashboard",
   };
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -241,12 +243,11 @@ function Navbar() {
             <>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Acessar Informações">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="Imagem de Perfil"
-                      src={`http://localhost:4000/images/user/${user.image}`}
-                      sx={{backgroundColor: "darkblue", height: "50px", width: "50px", padding: "2px"}}
-                    />
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0, borderRadius: "8px" }}
+                  >
+                    <AvatarComponent user={user} />
                   </IconButton>
                 </Tooltip>
                 <Menu

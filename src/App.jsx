@@ -14,6 +14,7 @@ import { UserProvider } from "./context/UserContext";
 import FlashMessage from "./components/pages/layout/FlashMessage";
 import MyPosts from "./components/pages/Posts/MyPosts";
 import CreatePost from "./components/pages/Posts/CreatePost";
+import Dashboard from "./components/pages/Posts/Dashboard";
 
 const App = () => {
   return (
@@ -32,15 +33,18 @@ const App = () => {
             <Route path="/" element={<Home />} />
           </Routes>
           <Routes>
-            <Route path="/user/profile" element={<Profile />} />
+            <Route path="/user/edit" element={<Profile />} />
           </Routes>
           <Routes>
             <Route path="/posts/myposts" element={<MyPosts />} />
           </Routes>
-
           <Routes>
             <Route path="/posts/create" element={<CreatePost />} />
           </Routes>
+          <Routes>
+            <Route path="/posts/dashboard" element={<Dashboard />} />
+          </Routes>
+
         </ContainerContext>
         <Footer />
       </UserProvider>

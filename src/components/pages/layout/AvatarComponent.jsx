@@ -1,7 +1,7 @@
 import Avatar from "@mui/material/Avatar";
 import React, { useState, useEffect } from 'react';
 
-const AvatarComponent = ({ user }) => {
+const AvatarComponent = ({ user, token }) => {
   const [pathImage, setPathImage] = useState('');
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const AvatarComponent = ({ user }) => {
     } else {
       setPathImage(''); // Define um caminho de imagem padrão ou vazio, se necessário
     }
-  }, [user]); // Dependência do useEffect - será disparado sempre que o usuário mudar
+  }, [user, token]); // Dependência do useEffect - será disparado sempre que o usuário mudar
 
   return (
     <Avatar

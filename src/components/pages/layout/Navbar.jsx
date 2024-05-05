@@ -247,7 +247,8 @@ function Navbar() {
                     onClick={handleOpenUserMenu}
                     sx={{ p: 0, borderRadius: "8px" }}
                   >
-                    <AvatarComponent user={user} />
+                   
+                    <AvatarComponent user={user} token={token}/>
                   </IconButton>
                 </Tooltip>
                 <Menu

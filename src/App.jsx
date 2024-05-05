@@ -16,6 +16,7 @@ import MyPosts from "./components/pages/Posts/MyPosts";
 import CreatePost from "./components/pages/Posts/CreatePost";
 import Dashboard from "./components/pages/Posts/Dashboard";
 import EditPost from "./components/pages/Posts/EditPost";
+import Followers from "./components/pages/Posts/Followers";
 
 const App = () => {
   return (
@@ -48,7 +49,9 @@ const App = () => {
           <Routes>
             <Route path="/posts/edit/:id" element={<EditPost />} />
           </Routes>
-
+          <Routes>
+            <Route path="/posts/following" element={<Followers />} />
+          </Routes>
         </ContainerContext>
         <Footer />
       </UserProvider>

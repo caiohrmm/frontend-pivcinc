@@ -1,16 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
 import api from "../../../utils/api";
-import RecipeCard from "../layout/Card";
 import useFlashMessage from "../../../hooks/useFlashMessage";
+import RecipeCard from "../layout/Card";
+import FollowingMessage from "./FollowingMessage";
 
-const Dashboard = () => {
-  const [posts, setPosts] = useState([]);
-  const [token] = useState(localStorage.getItem("token") || "");
+const Followers = () => {
   const [user, setUser] = useState({});
-
+  const [token] = useState(localStorage.getItem("token") || "");
   const { setFlashMessage } = useFlashMessage();
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +20,6 @@ const Dashboard = () => {
           },
         });
         setUser(response.data);
-        console.log(response.data);
       } catch (err) {
         console.log(err);
       }
@@ -31,31 +29,6 @@ const Dashboard = () => {
       fetchData();
     }
   }, [token]);
-
-  useEffect(() => {
-    async function getAllPosts() {
-      try {
-        const response = await api.get(`/posts/`, {
-          headers: {
-            Authorization: `Bearer ${JSON.parse(token)}`,
-          },
-        });
-
-        // Filtrando os posts para excluir aqueles com o mesmo userId do usuário logado
-        const filteredPosts = response.data.posts.filter(
-          (post) => post.userId !== user._id
-        );
-
-        setPosts(filteredPosts);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    if (token && user && user._id) {
-      getAllPosts();
-    }
-  }, [token, user]);
 
   const likePost = async (id) => {
     let msgType = "success";
@@ -88,6 +61,52 @@ const Dashboard = () => {
       msgType = "error";
       console.error("Erro ao descurtir o post:", error);
       setFlashMessage(error.response.data.message, msgType);
+    }
+  };
+
+  useEffect(() => {
+    async function getFollowingPosts() {
+      try {
+        const response = await api.get(`/users/posts/following`, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        });
+
+        // Filtrando os posts para excluir aqueles com o mesmo userId do usuário logado
+
+        setPosts(response.data);
+        console.log(posts);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    if (token && user && user._id) {
+      getFollowingPosts();
+    }
+  }, [token, user]);
+
+  // Função para contar os posts das pessoas que você está seguindo
+  const countFollowingPosts = () => {
+    try {
+      // Inicializa um conjunto para armazenar os IDs únicos de usuários
+      const uniqueUserIds = new Set();
+
+      // Adiciona os IDs de usuários únicos com base nos posts
+      posts.forEach((post) => {
+        uniqueUserIds.add(post.userId);
+      });
+
+      // Retorna o número de IDs de usuários únicos, que corresponde ao número de pessoas que você está seguindo
+      return uniqueUserIds.size;
+    } catch (error) {
+      console.error(
+        "Erro ao contar os posts das pessoas que você está seguindo:",
+        error
+      );
+      // Em caso de erro, retorna 0 ou trata de outra forma
+      return 0;
     }
   };
 
@@ -151,62 +170,37 @@ const Dashboard = () => {
           marginTop: "1%",
           borderBottom: "2px solid white",
           padding: "4px",
+          marginBottom: "10px",
         }}
         textAlign={"center"}
       >
-        Dashboard
+        Seguindo
       </Typography>
       <div>
-        {posts.length > 0 && (
-          <div className="description-posts">
-            <Typography
-              variant="h6"
-              color={"white"}
-              sx={{
-                padding: "4px",
-                textAlign: "center",
-              }}
-            >
-              Todos os posts do Pivcinc!
-            </Typography>
-          </div>
-        )}
-        {posts.length === 0 && (
-          <>
-            <div className="description-posts">
-              <Typography
-                variant="h6"
-                color={"white"}
-                sx={{
-                  marginTop: "1%",
-                  padding: "4px",
-                  textAlign: "center",
-                }}
-              >
-                O Pivcinc ainda não possui nenhuma postagem!
-              </Typography>
+        <FollowingMessage
+          user={user}
+          countFollowingPosts={countFollowingPosts}
+        />
+        <div className="cards-container gap-5">
+          {posts.map((post, index) => (
+            <div className="w-100">
+              <RecipeCard
+                key={index}
+                post={post}
+                type={"dashboard"}
+                likePost={likePost}
+                unlikePost={unlikePost}
+                user={user}
+                followUser={followUser}
+                unfollowUser={unfollowUser}
+                checkIfFollowing={checkIfFollowing}
+              ></RecipeCard>
             </div>
-          </>
-        )}
-      </div>
-      <div className="cards-container gap-5">
-        {posts.map((post, index) => (
-          <div className="w-100">
-            <RecipeCard
-              key={index}
-              post={post}
-              type={"dashboard"}
-              likePost={likePost}
-              unlikePost={unlikePost}
-              followUser={followUser}
-              unfollowUser={unfollowUser}
-              checkIfFollowing={checkIfFollowing}
-            ></RecipeCard>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default Dashboard;
+export default Followers;

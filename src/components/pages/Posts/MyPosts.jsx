@@ -69,7 +69,7 @@ const MyPosts = () => {
         msgType = "error";
         return err.response.data;
       });
-      setFlashMessage(data.message, msgType)
+    setFlashMessage(data.message, msgType);
   };
 
   return (
@@ -126,10 +126,10 @@ const MyPosts = () => {
           <div className="w-100">
             <RecipeCard
               key={index}
-              user={user}
               post={post}
               type={"myposts"}
               deletePost={deletePost}
+              user={user}
             ></RecipeCard>
           </div>
         ))}

@@ -15,6 +15,7 @@ import FlashMessage from "./components/pages/layout/FlashMessage";
 import MyPosts from "./components/pages/Posts/MyPosts";
 import CreatePost from "./components/pages/Posts/CreatePost";
 import Dashboard from "./components/pages/Posts/Dashboard";
+import EditPost from "./components/pages/Posts/EditPost";
 
 const App = () => {
   return (
@@ -43,6 +44,9 @@ const App = () => {
           </Routes>
           <Routes>
             <Route path="/posts/dashboard" element={<Dashboard />} />
+          </Routes>
+          <Routes>
+            <Route path="/posts/edit/:id" element={<EditPost />} />
           </Routes>
 
         </ContainerContext>

@@ -267,13 +267,21 @@ function Navbar() {
                   onClose={handleCloseUserMenu}
                 >
                   <MenuItem onClick={handleCloseUserMenu}>
-                    <Link to={"/user/profile"} className="navbar-links">
-                      <Typography textAlign="center">Meu Perfil</Typography>
+                    <Link to={"/posts/create"} className="navbar-links">
+                      <Typography textAlign="center">Criar Post</Typography>
                     </Link>
                   </MenuItem>
                   <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">Dashboard</Typography>
+                    <Link to={"/user/edit"} className="navbar-links">
+                      <Typography textAlign="center">Editar Perfil</Typography>
+                    </Link>
                   </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link to={"/posts/dashboard"} className="navbar-links">
+                      <Typography textAlign="center">Dashboard</Typography>
+                    </Link>
+                  </MenuItem>
+                  
                   <MenuItem onClick={() => setIsOpen(true)}>
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>

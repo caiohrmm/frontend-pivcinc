@@ -20,8 +20,7 @@ const AvatarComponent = ({ user }) => {
       sx={{
         height: "50px",
         width: "50px",
-        padding: "3px",
-        borderRadius: "20px",
+        borderRadius: "40px",
       }}
     />
   );

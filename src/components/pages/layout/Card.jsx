@@ -21,6 +21,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import api from "../../../utils/api";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { Comment } from "./modal/Comment";
+import { ViewComments } from "./modal/ViewComments";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -49,7 +51,10 @@ export default function RecipeCard({
   const [liked, setLiked] = React.useState(false);
   const [postLikes, setPostLikes] = React.useState(post.likes.length);
   const [following, setFollowing] = React.useState(false);
-  const [user, setUser] = React.useState({})
+  const [user, setUser] = React.useState({});
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const [isOpenModalViewComments, setIsOpenModalViewComments] =
+    React.useState(false);
 
   React.useEffect(() => {
     async function fetchData() {
@@ -60,7 +65,6 @@ export default function RecipeCard({
           },
         });
         setUser(response.data);
-        console.log(response.data);
       } catch (err) {
         console.log(err);
       }
@@ -274,6 +278,33 @@ export default function RecipeCard({
         <CardContent>
           <Typography paragraph>{post.description}</Typography>
         </CardContent>
+
+        <div className="flex w-100 justify-between">
+          {type == "dashboard" && (
+            <>
+              <Button onClick={() => setIsOpenModal(true)}>
+                Fazer comentário
+              </Button>
+              <Comment
+                isOpen={isOpenModal}
+                handleModal={setIsOpenModal}
+                post={post}
+              />
+            </>
+          )}
+          <div className="flex w-100 justify-between">
+          <Button onClick={() => setIsOpenModalViewComments(true)}>
+            Ver comentários
+          </Button>
+          <ViewComments
+            isOpen={isOpenModalViewComments}
+            handleModal={setIsOpenModalViewComments}
+            post={post}
+          />
+        </div>
+        </div>
+
+        
       </Collapse>
     </Card>
   );

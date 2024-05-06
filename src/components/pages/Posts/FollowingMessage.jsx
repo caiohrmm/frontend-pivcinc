@@ -34,7 +34,7 @@ const FollowingMessage = ({ user, countFollowingPosts }) => {
     fetchData();
   }, [user, countFollowingPosts]);
 
-  const shouldDisplayMessage = followersCount > 0 || followingCount > 0;
+  const shouldDisplayMessage = followingCount || followersCount
 
   return (
     shouldDisplayMessage && (

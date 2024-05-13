@@ -89,9 +89,9 @@ const EditPost = () => {
     setFlashMessage(data.message, msgType)
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    updatePost(post);
+    await updatePost(post);
     navigate("/posts/myposts")
   };
   return (
@@ -151,7 +151,7 @@ const EditPost = () => {
                 src={
                   preview
                     ? URL.createObjectURL(preview)
-                    : `http://localhost:4000/images/post/${post.images[0]}`
+                    : `http://localhost:4173/images/post/${post.images[0]}`
                 }
                 alt={post.images[0]}
               />

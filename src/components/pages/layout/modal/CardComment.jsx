@@ -41,7 +41,7 @@ export default function CardComment({ comment }) {
           <Avatar
             sx={{ bgcolor: green[500] }}
             aria-label="recipe"
-            src={`http://localhost:4000/images/user/${user.image}`}
+            src={`http://localhost:4173/images/user/${user.image}`}
           ></Avatar>
         }
         title={comment.username}

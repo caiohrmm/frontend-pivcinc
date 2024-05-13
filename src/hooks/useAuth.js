@@ -8,6 +8,10 @@ export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
 
+  const reloadPage = () => {
+    window.location.reload(); // Esta linha irá recarregar a página
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -34,6 +38,11 @@ export default function useAuth() {
     }
 
     setFlashMessage(msgText, msgType);
+
+    // Adiciona um atraso de 2 segundos antes de recarregar a página
+    setTimeout(() => {
+      reloadPage();
+    }, 2000);
   }
 
   async function authUser(data) {
@@ -46,8 +55,8 @@ export default function useAuth() {
     const msgText = "Logout realizado com sucesso!";
     const msgType = "success";
 
-    setAuthenticated(false);
     localStorage.removeItem("token");
+    setAuthenticated(false);
 
     api.defaults.headers.Authorization = undefined;
 
@@ -73,6 +82,9 @@ export default function useAuth() {
     }
 
     setFlashMessage(msgText, msgType);
+    setTimeout(() => {
+      reloadPage();
+    }, 2000);
   }
 
   return { register, authenticated, logout, login };

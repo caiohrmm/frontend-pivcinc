@@ -183,7 +183,7 @@ const Dashboard = () => {
                   textAlign: "center",
                 }}
               >
-                O Pivcinc ainda não possui nenhuma postagem!
+                Eita... Ainda não tem nada aqui!
               </Typography>
             </div>
           </>

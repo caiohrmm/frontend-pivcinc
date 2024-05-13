@@ -141,7 +141,7 @@ const CreatePost = () => {
                 src={
                   preview
                     ? URL.createObjectURL(preview)
-                    : `http://localhost:4000/images/post/${post.images[0]}`
+                    : `http://localhost:4173/images/post/${post.images[0]}`
                 }
                 alt={post.images[0]}
               />

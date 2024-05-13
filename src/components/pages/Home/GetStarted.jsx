@@ -36,15 +36,12 @@ const GetStarted = () => {
           }}
         >
           <Title
-            text={"We make it easy for tenants and landlords"}
+            text={"Juntos somos mais fortes!"}
             textAlign={"start"}
+            color={"white"}
           />
           <CustomTypography>
-            Listing are updated continuously so you
-            <br />
-            won't miss out on homes that just hit
-            <br />
-            market until you find your perfect home.
+            Se livre de todos seus vícios agora mesmo!
           </CustomTypography>
         </Box>
       </CustomGridItem>
@@ -92,11 +89,9 @@ const GetStarted = () => {
             px: 4,
           }}
         >
-          <Title text={"Match with the best agent"} textAlign={"start"}  />
+          <Title text={"Se supere a cada dia!"} color={"white"}  />
           <CustomTypography>
-            Our verified partner Agents are local experts who
-            <br />
-            earn an average of 4.8/5 stars from buyers and sellers.
+            Se reuna com pessoas que querem mudar de vida!
           </CustomTypography>
         </Box>
       </CustomGridItem>

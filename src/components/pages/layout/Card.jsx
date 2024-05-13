@@ -176,7 +176,7 @@ export default function RecipeCard({
               <Avatar
                 sx={{ bgcolor: green[500] }}
                 aria-label="recipe"
-                src={`http://localhost:4000/images/user/${postAuthor.image}`}
+                src={`http://localhost:4173/images/user/${postAuthor.image}`}
               ></Avatar>
             }
             title={postAuthor.name}
@@ -200,7 +200,7 @@ export default function RecipeCard({
               <Avatar
                 sx={{ bgcolor: green[500] }}
                 aria-label="recipe"
-                src={`http://localhost:4000/images/user/${postAuthor.image}`}
+                src={`http://localhost:4173/images/user/${postAuthor.image}`}
               ></Avatar>
             }
             title={postAuthor.name}
@@ -211,7 +211,7 @@ export default function RecipeCard({
       <CardMedia
         component="img"
         height="194"
-        image={`http://localhost:4000/images/post/${post.images[0]}`}
+        image={`http://localhost:4173/images/post/${post.images[0]}`}
         alt="Imagem"
       />
       <CardContent>

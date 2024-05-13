@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import useFlashMessage from "../../../hooks/useFlashMessage";
 import api from "../../../utils/api";
 import RoundedImage from "../layout/RoundedImage";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [preview, setPreview] = useState();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({});
 
@@ -37,8 +39,6 @@ const Profile = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
     let msgType = "success";
 
     const formData = new FormData();
@@ -62,7 +62,6 @@ const Profile = () => {
         msgType = "error";
         return err.response.data;
       });
-
     setFlashMessage(data.message, msgType);
   };
 
@@ -85,14 +84,18 @@ const Profile = () => {
         <form className="flex flex-col gap-4 form-grid" onSubmit={handleSubmit}>
           <div>
             <div className="mb-2 block p-4">
-              <Label htmlFor="file-upload" value="Imagem:" className="text-xl" />
+              <Label
+                htmlFor="file-upload"
+                value="Imagem:"
+                className="text-xl"
+              />
               {/* Caso exista uma imagem de usuario ou um preview, ele renderiza esse JSX */}
               {(user.image || preview) && (
                 <RoundedImage
                   src={
                     preview
                       ? URL.createObjectURL(preview)
-                      : `http://localhost:4000/images/user/${user.image}`
+                      : `http://localhost:4173/images/user/${user.image}`
                   }
                   alt={user.image}
                 />

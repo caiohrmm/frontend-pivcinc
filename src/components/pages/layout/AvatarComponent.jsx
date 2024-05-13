@@ -7,7 +7,7 @@ const AvatarComponent = ({ user, token }) => {
   useEffect(() => {
     // Aqui você pode atualizar o pathImage com base nas alterações no usuário ou em qualquer outra condição
     if (user && user.image) {
-      setPathImage(`http://localhost:4000/images/user/${user.image}`);
+      setPathImage(`http://localhost:4173/images/user/${user.image}`);
     } else {
       setPathImage(''); // Define um caminho de imagem padrão ou vazio, se necessário
     }

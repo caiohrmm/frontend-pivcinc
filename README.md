@@ -1,9 +1,33 @@
-# React + Vite
+# Pivcinc - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Introdução
+Pivcinc é uma aplicação frontend desenvolvida em React para uma rede social voltada para adictos. O projeto utiliza a biblioteca Material UI para construção de uma interface moderna e responsiva. O frontend consome a API REST desenvolvida para gerenciar usuários, postagens, curtidas e comentários.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-"# frontend-pivcinc" 
+## 🚀 Tecnologias Utilizadas
+
+- **React** – Biblioteca para construção de interfaces dinâmicas.
+- **Material UI** – Biblioteca de componentes estilizados para React.
+- **Axios** – Cliente HTTP para comunicação com a API.
+- **React Router** – Gerenciamento de rotas no frontend.
+
+---
+
+## 🛠️ Instalação
+
+Clone este repositório e instale as dependências:
+
+```sh
+$ git clone https://github.com/seu-usuario/frontend-pivcinc.git
+$ cd frontend-pivcinc
+$ npm install
+```
+
+Para iniciar o servidor de desenvolvimento:
+
+```xyz
+$ npm start
+```
+
+---

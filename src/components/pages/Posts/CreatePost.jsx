@@ -141,7 +141,7 @@ const CreatePost = () => {
                 src={
                   preview
                     ? URL.createObjectURL(preview)
-                    : `http://localhost:4173/images/post/${post.images[0]}`
+                    : `http://localhost:${import.meta.env.VITE_API_PORT}/images/post/${post.images[0]}`
                 }
                 alt={post.images[0]}
               />

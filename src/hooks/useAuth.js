@@ -32,17 +32,16 @@ export default function useAuth() {
         .then((response) => response.data);
 
       await authUser(data);
+      // Adiciona um atraso de 2 segundos antes de recarregar a página
+      setTimeout(() => {
+        reloadPage();
+      }, 2000);
     } catch (error) {
       msgText = error.response.data.message;
       msgType = "error";
     }
 
     setFlashMessage(msgText, msgType);
-
-    // Adiciona um atraso de 2 segundos antes de recarregar a página
-    setTimeout(() => {
-      reloadPage();
-    }, 2000);
   }
 
   async function authUser(data) {
@@ -76,15 +75,15 @@ export default function useAuth() {
         .then((response) => response.data);
 
       await authUser(data);
+      setTimeout(() => {
+        reloadPage();
+      }, 2000);
     } catch (error) {
       msgText = error.response.data.message;
       msgType = "error";
     }
 
     setFlashMessage(msgText, msgType);
-    setTimeout(() => {
-      reloadPage();
-    }, 2000);
   }
 
   return { register, authenticated, logout, login };

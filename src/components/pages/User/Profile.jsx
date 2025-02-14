@@ -95,7 +95,7 @@ const Profile = () => {
                   src={
                     preview
                       ? URL.createObjectURL(preview)
-                      : `http://localhost:4173/images/user/${user.image}`
+                      : `http://localhost:${import.meta.env.VITE_API_PORT}/images/user/${user.image}`
                   }
                   alt={user.image}
                 />

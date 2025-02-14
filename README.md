@@ -24,6 +24,12 @@ $ cd frontend-pivcinc
 $ npm install
 ```
 
+Vá até o arquivo **.env** e altere a API_PORT para a porta em que estará aberta a sua API REST que fica no meu repositório pivcinc-backend
+
+```ini
+API_PORT= portadobackend
+```
+
 Para iniciar o servidor de desenvolvimento:
 
 ```xyz
